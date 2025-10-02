@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kreisligaheft – Stadionheft-Service</title>
+  <meta name="description" content="Kreisligaheft.de" />
+  <meta property="og:title" content="Kreisligaheft – Stadionheft-Service" />
+  <meta property="og:description" content="Dienstleister für Stadionhefte. Setup & Muster kostenlos. Klare Preise je Auflage. Optional mit Druck. Deutschlandweit." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kreisligaheft.de" />
+  <meta name="theme-color" content="#ffffff" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0a0a0a;
+      --muted: #6b7280; /* gray-500 */
+      --line: #e5e7eb; /* gray-200 */
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6; letter-spacing: .2px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: min(980px, 92vw); margin: 0 auto; }
+
+    header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.8); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    .logo { font-weight: 600; letter-spacing: .2px; } /* gleiche Anmutung wie Tabs */
+    .nav a { margin-left: 16px; color: var(--muted); font-weight: 600; }
+    .nav a.active, .nav a:hover { color: var(--text); }
+
+    .hero { padding: 56px 0 32px; text-align: left; }
+    .eyebrow { color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: 1.6px; }
+    h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.1; margin: 8px 0 10px; font-weight: 800; }
+    .lead { font-size: clamp(16px, 2.2vw, 20px); color: #374151; max-width: 800px; margin: 0 0 10px; }
+
+    section { padding: 34px 0; }
+    .section-title { margin: 0 0 12px; font-size: clamp(26px, 4.6vw, 38px); font-weight: 800; }
+    .sublead { color: #374151; max-width: 780px; }
+
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .pad { padding: 22px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; border: 1px solid #111827; background: #111827; color: #fff; font-weight: 700; cursor: pointer; justify-content: center; }
+    .btn.secondary { background: transparent; color: #111827; border-color: #d1d5db; }
+    .btn.block { width: 100%; }
+    .btn:hover { filter: brightness(.95); }
+
+    /* Segmented controls */
+    .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 14px; }
+    .seg button { padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: #fff; color: var(--text); cursor: pointer; }
+    .seg button[aria-pressed="true"] { border-color: #111827; }
+
+    /* Inputs */
+    form { display: grid; gap: 10px; }
+    input, textarea, select { background: #fff; border: 1px solid var(--line); color: var(--text); padding: 12px 14px; border-radius: 12px; font: inherit; }
+    textarea { min-height: 120px; resize: vertical; }
+    .small { font-size: 12px; color: var(--muted); }
+
+    /* Price box */
+    .pricebox { background: #fafafa; border: 1px dashed #e5e7eb; border-radius: 14px; padding: 12px; display: grid; gap: 8px; }
+    .pricebox .line { display: flex; justify-content: space-between; align-items: baseline; }
+    .pricebox .big { font-size: 26px; font-weight: 800; }
+
+    /* FAQ */
+    .faq { max-width: 900px; }
+    .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq summary::-webkit-details-marker { display: none; }
+
+    .refs { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+    footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 14px; color: var(--muted); }
+
+    /* Fade-in */
+    .reveal { opacity: 0; transform: translateY(8px); transition: .5s ease-out; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* Pages */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Counter control */
+    .counter { display: inline-flex; align-items: center; gap: 8px; }
+    .counter button { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 18px; }
+    .counter input { width: 72px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#/" class="logo" data-nav>Kreisligaheft</a>
+      <nav>
+        <a href="#/" data-nav>Start</a>
+        <a href="#/referenzen" data-nav>Referenzen</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <main id="home" class="page active">
+    <section class="hero container">
+      <div class="eyebrow">Dienstleister für Stadionhefte · Deutschlandweit</div>
+      <h1>Kreisligaheft.de</h1>
+      <p class="lead">Lasse dir deinem Verein das Stadionheft gestalten, mit Infos versorgen und pünktlich zu jedem Heimspiel liefern. Kein Aufwand für dich.</p>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="container">
+      <h2 class="section-title">Leistungen</h2>
+      <div class="card pad reveal">
+        <ul>
+          <li>Stadionheft pünktlich zu jedem Heimspiel</li>
+          <li>Alle Inhalte inklusive</li>
+          <li>Spieltagsinfos, Rückblick, Kader, Tabelle, Vereinsinfos, Gegnercheck, Sponsoren und mehr</li>
+          <li>Wähle zwischen eigenem Druck und Druckdienstleistung</li>
+          <li>Lieferung deutschlandweit</li>
+        </ul>
+        <p class="sublead" style="margin-top:8px;">Schon <b>1–3 Sponsoren</b> können die Heftkosten komplett abdecken – alles darüber hinaus bringt dem Verein zusätzlichen Gewinn. Quelle: Stadionzeitung‑Online.de</p>
+      </div>
+    </section>
+
+    <!-- Konfigurator -->
+    <section class="container" id="konfigurator">
+      <h2 class="section-title">Konfigurator</h2>
+      <div class="card pad reveal" id="configCard">
+        <div class="seg" role="tablist" aria-label="Heftgröße">
+          <button id="sizeSmall" role="tab" aria-pressed="true">Klein (20–28 Seiten)</button>
+          <button id="sizeLarge" role="tab" aria-pressed="false">Groß (32–40 Seiten)</button>
+        </div>
+        <div class="seg" role="tablist" aria-label="Druckoption">
+          <button id="printNo" role="tab" aria-pressed="true">Eigendruck</button>
+          <button id="printYes" role="tab" aria-pressed="false">Wir drucken für dich!</button>
+        </div>
+        <div class="field">
+          <label class="small" for="gamesInput">Heimspiele pro Saison</label>
+          <div class="counter">
+            <button type="button" id="minus">−</button>
+            <input id="gamesInput" type="number" min="8" max="20" step="1" value="15" />
+            <button type="button" id="plus">+</button>
+          </div>
+        </div>
+        <div class="pricebox" style="margin-top:10px" aria-live="polite">
+          <div class="line"><span class="small">Preis je Auflage</span><span id="perIssue" class="big">36,00 €</span></div>
+          <div class="line"><span class="small">Saison-Gesamt (Auflagen × Preis)</span><span id="season" class="big">540,00 €</span></div>
+
+        </div>
+      </div>
+
+      <!-- Kontaktkarte direkt darunter; übernimmt Werte aus Konfigurator -->
+      <div class="card pad reveal" id="contactFromConfig" style="margin-top:14px;">
+        <h2 style="margin:0 0 8px;">Kontakt aufnehmen</h3>
+        <form id="form">
+          <input name="verein" placeholder="Vereinsname" required />
+
+          <!-- Zusammenfassung der Auswahl (read‑only Anzeige) -->
+          <div class="pricebox">
+            <div class="line"><span class="small">Heftgröße</span><span id="sumSize">Klein (20–28)</span></div>
+            <div class="line"><span class="small">Druck</span><span id="sumPrint">Ohne Druck</span></div>
+            <div class="line"><span class="small">Heimspiele</span><span id="sumGames">15</span></div>
+            <div class="line"><span class="small">Preis je Auflage</span><span id="fPer">36,00 €</span></div>
+            <div class="line"><span class="small">Gesamte Saison</span><span id="fTotal">540,00 €</span></div>
+          </div>
+
+          <textarea name="msg" placeholder="Nachricht (optional)"></textarea>
+          <button class="btn" type="submit">Kontakt per E‑Mail</button>
+          <p class="small">Alternativ: <a href="mailto:anfrage@kreisligaheft.de">anfrage@kreisligaheft.de</a> · Tel. <a href="tel:+4916094470803">0160 94470803</a></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Referenzen: nur breiter Button zur Seite -->
+    <section class="container" id="referenzen">
+      <h2 class="section-title">Referenzen</h2>
+      <div class="card pad reveal">
+        <a class="btn block" href="#/referenzen">Zu den Referenzen</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container" id="faq">
+      <h2 class="section-title">FAQ</h2>
+      <div class="faq">
+        <details class="reveal"><summary><b>Was genau ist im kostenlosen Setup enthalten?</b><span>▾</span></summary>
+          <div>Eine vollständige Auflage: Kader, Bilder, Layout, Sponsorenflächen, Feinschliff – damit ihr direkt seht, was ihr bekommt.</div>
+        </details>
+        <details class="reveal"><summary><b>Wie oft liefern wir Hefte?</b><span>▾</span></summary>
+          <div>Wöchentlich bei Heimspielen im Rahmen des Saisonvertrags – termingerecht als fertiges PDF, optional inklusive Druckabwicklung.</div>
+        </details>
+        <details class="reveal"><summary><b>Können wir eigene Inhalte/Sponsoren liefern?</b><span>▾</span></summary>
+          <div>Ja – Anzeigen, Logos, Vereinsnews etc. werden sauber integriert. Wir übernehmen auf Wunsch auch die Pflege/Anpassung.</div>
+        </details>
+        <details class="reveal"><summary><b>Übernehmt ihr auch den Druck?</b><span>▾</span></summary>
+          <div>Ja. Optionaler Aufpreis je Auflage: klein +150 €, groß +200 €, DIN A5 (Auflage nach Absprache).</div>
+        </details>
+        <details class="reveal"><summary><b>In welchem Gebiet seid ihr aktiv?</b><span>▾</span></summary>
+          <div>Deutschlandweit. Sitz: 74653 Künzelsau (Hohenlohe).</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Kontakt (abschließender Block entfernt wie gewünscht) -->
+  </main>
+
+  <!-- REFERENZEN Seite -->
+  <main id="refsPage" class="page">
+    <section class="container" style="padding-top:34px;">
+      <h2 class="section-title">Referenzen</h2>
+      <p class="sublead">Hier erscheinen Vereine und Saisonbeispiele, bei denen das Heft betrieben wird. (Platzhalter)</p>
+      <div class="refs">
+        <div class="card pad"><b>Verein A</b><div class="small">Kreisliga • Stadionheft klein • PDF</div></div>
+        <div class="card pad"><b>Verein B</b><div class="small">Bezirksliga • Stadionheft groß • + Druck</div></div>
+        <div class="card pad"><b>Verein C</b><div class="small">Kreisliga • Stadionheft groß • PDF</div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- IMPRESSUM Seite -->
+  <main id="imprintPage" class="page">
+    <section class="container" style="padding-top:34px;">
+      <h2 class="section-title">Impressum</h2>
+      <div class="card pad">
+        <p><strong>Kreisligaheft</strong><br/>Nico Huber<br/>Taläckerallee 53/1<br/>74653 Künzelsau</p>
+        <p>E‑Mail: <a href="mailto:impressum@kreisligaheft.de">impressum@kreisligaheft.de</a><br/>Telefon: <a href="tel:+4916094470803">0160 94470803</a></p>
+        <p>USt-Status: Kleinunternehmer gem. §19 UStG (sofern zutreffend – bitte anpassen).</p>
+        <h3>Datenschutz</h3>
+        <p>Diese Website setzt keine Tracking‑Cookies und bindet keine externen Skripte von Drittanbietern ein. Daten, die per E‑Mail versendet werden, werden ausschließlich zur Bearbeitung der Anfrage genutzt.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+      <div>© <span id="year"></span> Kreisligaheft · Deutschlandweit · Sitz Künzelsau (Hohenlohe)</div>
+      <div><a href="#/impressum">Impressum</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple router
+    const pages = {
+      '#/': document.getElementById('home'),
+      '#/referenzen': document.getElementById('refsPage'),
+      '#/impressum': document.getElementById('imprintPage')
+    };
+    function renderRoute(){
+      const hash = location.hash || '#/' ;
+      for (const k in pages) pages[k].classList.remove('active');
+      (pages[hash] || pages['#/']).classList.add('active');
+      document.querySelectorAll('[data-nav]').forEach(a=>{
+        a.classList.toggle('active', a.getAttribute('href')===hash);
+      });
+    }
+    window.addEventListener('hashchange', renderRoute); renderRoute();
+
+    // Reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Pricing logic
+    const EUR = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+    let size = 'small';
+    let print = 'no';
+    let games = 15;
+
+    const PRICES = { small: 36, large: 44 };
+    const PRINT = { small: 150, large: 200 };
+
+    const perIssue = document.getElementById('perIssue');
+    const season = document.getElementById('season');
+
+    const bSmall = document.getElementById('sizeSmall');
+    const bLarge = document.getElementById('sizeLarge');
+    const bNo = document.getElementById('printNo');
+    const bYes = document.getElementById('printYes');
+
+    const gamesInput = document.getElementById('gamesInput');
+    const minus = document.getElementById('minus');
+    const plus = document.getElementById('plus');
+
+    function clampGames(v){ return Math.min(20, Math.max(8, v|0)); }
+
+    function calc(){
+      const base = PRICES[size];
+      const surcharge = (print==='yes') ? PRINT[size] : 0;
+      const per = base + surcharge;
+      perIssue.textContent = EUR.format(per);
+      season.textContent = EUR.format(per * games);
+      // mirror to contact summary
+      document.getElementById('sumSize').textContent = size==='large' ? 'Groß (32–40)' : 'Klein (20–28)';
+      document.getElementById('sumPrint').textContent = print==='yes' ? 'Mit Druck' : 'Ohne Druck';
+      document.getElementById('sumGames').textContent = games;
+      document.getElementById('fPer').textContent = EUR.format(per);
+      document.getElementById('fTotal').textContent = EUR.format(per * games);
+    }
+    function setPressed(btn, pressed){ btn.setAttribute('aria-pressed', pressed? 'true':'false'); }
+
+    bSmall.addEventListener('click', ()=>{ size='small'; setPressed(bSmall,true); setPressed(bLarge,false); calc(); });
+    bLarge.addEventListener('click', ()=>{ size='large'; setPressed(bSmall,false); setPressed(bLarge,true); calc(); });
+    bNo.addEventListener('click',   ()=>{ print='no'; setPressed(bNo,true); setPressed(bYes,false); calc(); });
+    bYes.addEventListener('click',  ()=>{ print='yes'; setPressed(bNo,false); setPressed(bYes,true); calc(); });
+
+    minus.addEventListener('click', ()=>{ games = clampGames((gamesInput.value|0) - 1); gamesInput.value = games; calc(); });
+    plus.addEventListener('click',  ()=>{ games = clampGames((gamesInput.value|0) + 1); gamesInput.value = games; calc(); });
+    gamesInput.addEventListener('input', ()=>{ games = clampGames(gamesInput.value); gamesInput.value = games; calc(); });
+
+    calc();
+
+    // Mailto submission; uses current config state
+    document.getElementById('form').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const verein = e.target.verein.value.trim();
+      const s = (size==='large') ? 'Groß (32–40)' : 'Klein (20–28)';
+      const p = (print==='yes') ? 'Mit Druck' : 'Ohne Druck';
+      const per = PRICES[size] + (print==='yes' ? PRINT[size] : 0);
+      const total = per * games;
+      const body = encodeURIComponent(`Verein: ${verein}
+Optionen: ${s}, ${p}
+Heimspiele: ${games}
+Preis je Auflage: ${EUR.format(per)}
+Saison gesamt: ${EUR.format(total)}
+
+Nachricht:
+${e.target.msg.value||''}`);
+      const subject = encodeURIComponent('Anfrage Kreisligaheft');
+      location.href = `mailto:anfrage@kreisligaheft.de?subject=${subject}&body=${body}`;
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
